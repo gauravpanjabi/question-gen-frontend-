@@ -1,0 +1,46 @@
+.aboutus-container{
+    display: flex;
+    flex-direction: row;
+    column-gap: 90px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 30px 70px;
+}
+
+.description-container{
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+}
+
+.aboutus-img{
+    width: 600px;
+    height: 600px;
+    left: 25;
+}
+
+.h1-des1 {
+    font-weight: bolder;
+    width: 750px;
+}
+
+.h1-quizz {
+    color:rgb(199, 19, 187);
+}
+
+.h1-des1 {
+    color: #fff;
+    font-size: 56px;
+    font-weight: 900;
+    font-family: Roboto-Regular;
+    letter-spacing: 2px;
+}
+
+.h1-des2 {
+    color: #fff;
+    font-size: 28px;
+    font-weight: 900;
+    font-family: Roboto-Regular;
+    letter-spacing: 2px;
+}
+

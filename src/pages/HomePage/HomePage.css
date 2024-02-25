@@ -1,0 +1,8 @@
+.HomePage{
+    background-image: url('../../assets/images/backgroundimg.jpg');
+    background-size: cover; 
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    height: auto;
+}

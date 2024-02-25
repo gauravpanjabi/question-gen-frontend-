@@ -1,0 +1,60 @@
+.mcq-card {
+    border: 1px solid #ccc;
+    border-radius: 10px; 
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    background: #fff;
+    width: 80%;
+  }
+  
+  .question {
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-family: Poppins-Medium;
+  }
+  
+  .option {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    font-family: Roboto-Regular;
+  }
+  
+  .option-label {
+    font-weight: bold;
+    margin-right: 15px;
+  }
+
+  .mcq-option-flex{
+    display: flex;
+    flex-direction: row;
+  }
+
+  .text-option{
+    font-family: Roboto-Regular;
+    width: 400px;
+    border-radius: 5px;
+    font-size: 15px;
+    border-color:rgb(218, 216, 216);
+    border-width: 2px;
+    height: auto;
+    border-style:solid;
+    resize: none;
+    overflow-y: hidden;
+  }
+  
+  .text-question{
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-family: Poppins-Medium;
+    font-size: 18px;
+    height: auto;
+    border-radius: 5px;
+    border-color: rgb(218, 216, 216);
+    width: 100%;
+    border-width: 2px;
+    border-style:solid;
+    resize: none;
+    overflow-y: hidden;
+  }

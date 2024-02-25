@@ -1,0 +1,56 @@
+[
+    {
+      "ID": 1,
+      "Question": "What did Elon Musk tweet about Tesla's acceptance of Bitcoin?",
+      "options": [
+        "Tesla will accept Bitcoin payments.",
+        "Tesla will not accept Bitcoin payments.",
+        "Tesla is considering Bitcoin payments.",
+        "Tesla is unsure about Bitcoin payments."
+      ]
+    },
+    {
+      "ID": 2,
+      "Question": "What was Elon Musk's statement regarding Dogecoin?",
+      "options": [
+        "He's not interested in Dogecoin.",
+        "He's working with Dogecoin developers to improve efficiency.",
+        "He dislikes Dogecoin.",
+        "He's selling all his Dogecoin."
+      ]
+    },
+    {
+      "ID": 3,
+      "Question": "How did Elon Musk's tweet affect Bitcoin's price?",
+      "options": [
+        "Bitcoin's price increased significantly.",
+        "Bitcoin's price decreased significantly.",
+        "Bitcoin's price remained unchanged.",
+        "Bitcoin's price became unpredictable."
+      ]
+    },
+    {
+      "ID": 4,
+      "Question": "What did Tesla announce regarding Bitcoin and vehicle purchases?",
+      "options": [
+        "Tesla will now accept Bitcoin for vehicle purchases.",
+        "Tesla will continue to use Bitcoin for vehicle purchases.",
+        "Tesla will suspend Bitcoin for vehicle purchases.",
+        "Tesla will only accept Dogecoin for vehicle purchases."
+      ]
+    },
+    {
+      "ID": 5,
+      "Question": "How does Elon Musk feel about cryptocurrency's impact on fossil fuel use?",
+      "options": [
+        "He believes cryptocurrency has no impact on fossil fuel use.",
+        "He strongly supports cryptocurrency's impact on fossil fuel use.",
+        "He is concerned about cryptocurrency's impact on fossil fuel use.",
+        "He hasn't expressed an opinion on this issue."
+      ]
+    }
+  ]
+  
+
+
+  

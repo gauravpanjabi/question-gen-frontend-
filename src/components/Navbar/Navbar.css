@@ -1,0 +1,66 @@
+  .header{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 50px;
+    top: 0;
+    left: 0;
+  }
+
+  
+
+  .button-stack{
+    display: flex;
+    flex-direction: row;
+    column-gap: 30px;
+  }
+  
+  .login-button{
+    font-family: Roboto-Regular;
+    font-size: 15px;
+    font-weight:bolder;
+    padding: 15px 35px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .signup-button{
+    font-family: Roboto-Regular;
+    font-size: 15px;
+    font-weight:bolder;
+    padding: 15px 35px;
+    border-radius: 5px;
+    border: none;
+    background: rgb(218, 9, 237);
+    color: rgb(255, 255, 255);
+    box-shadow: rgb(218, 9, 237) 0px 10px 20px -5px;
+    cursor: pointer;
+  }
+
+  .signup-button:hover{
+    background-color: rgb(199, 19, 187);
+  }
+
+  /* styles.css */
+
+/* Style the container div if needed */
+
+
+/* Style the logo image */
+
+  .logo-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 15px; /* Add padding as needed to adjust spacing */
+    z-index: 1;
+    width: 200px; /* Set the desired width */
+    height: auto;
+     /* Use z-index to control the stacking order if needed */
+  }
+   /* Add rounded corners to the border */
+
+
+  
