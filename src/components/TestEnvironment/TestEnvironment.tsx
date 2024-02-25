@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './TestEnvironment.css';
 import data from './questions.json';
-
+import CheckAnswers from './CheckAnswers'; // Import CheckAnswers component
 
 interface Question {
   text: string;
@@ -18,16 +18,15 @@ const TestEnvironment: React.FC = () => {
   const [currentQuestion, setCurrentQuestion] = useState<number>(0);
   const [textAreaValues, setTextAreaValues] = useState<string[]>([]);
   const [showResults, setShowResults] = useState<boolean>(false);
-  const [correctAnswers, setCorrectAnswers] = useState<number>(0);
-  const [incorrectAnswers, setIncorrectAnswers] = useState<number>(0);
-  const [skippedQuestions, setSkippedQuestions] = useState<number>(0);
+  const [correctAnswers, setCorrectAnswers] = useState<string[]>([]); // Store correct answers
+  const [incorrectQuestions, setIncorrectQuestions] = useState<string[]>([]);
+  const [skippedQuestionIndices, setSkippedQuestionIndices] = useState<number[]>([]);
 
   useEffect(() => {
     const fetchedQuizData: QuizData = data;
     setQuizData(fetchedQuizData);
     setTextAreaValues(Array(fetchedQuizData.questions.length).fill(''));
   }, []);
-
 
   const navigateToQuestion = (direction: 'prev' | 'next') => {
     if (!showResults) {
@@ -61,6 +60,9 @@ const TestEnvironment: React.FC = () => {
     let correct = 0;
     let incorrect = 0;
     let skipped = 0;
+    const incorrectQuestionsList: string[] = [];
+    const skippedIndices: number[] = [];
+    const correctAnswersList: string[] = [];
 
     quizData?.questions.forEach((question, index) => {
       const answerEntered = textAreaValues[index].trim().toLowerCase();
@@ -68,16 +70,19 @@ const TestEnvironment: React.FC = () => {
 
       if (answerEntered === correctAnswer) {
         correct++;
+        correctAnswersList.push(correctAnswer);
       } else if (answerEntered === '') {
         skipped++;
+        skippedIndices.push(index);
       } else {
         incorrect++;
+        incorrectQuestionsList.push(correctAnswer);
       }
     });
 
-    setCorrectAnswers(correct);
-    setIncorrectAnswers(incorrect);
-    setSkippedQuestions(skipped);
+    setCorrectAnswers(correctAnswersList);
+    setIncorrectQuestions(incorrectQuestionsList);
+    setSkippedQuestionIndices(skippedIndices);
 
     setShowResults(true);
   };
@@ -90,7 +95,7 @@ const TestEnvironment: React.FC = () => {
 
   return (
     <div className="quiz-container">
-      <h1 className="title11">MCQ Test</h1>
+      <h1 className="title11">Test</h1>
       <div className="question-card">
         <div className="question">{question.text}</div>
         <div>
@@ -131,21 +136,39 @@ const TestEnvironment: React.FC = () => {
         <div className="summary">
           <h2 className='summary-statistics'>Summary</h2>
           <p className='summary-statistics'>Total Questions: {quizData.questions.length}</p>
-          <p className='summary-statistics'>Correct Answers: {correctAnswers}</p>
-          <p className='summary-statistics'>Incorrect Answers: {incorrectAnswers}</p>
-          <p className='summary-statistics'>Skipped Questions: {skippedQuestions}</p>
+          <p className='summary-statistics'>Correct Answers: {correctAnswers.length}</p>
+          <p className='summary-statistics'>Incorrect Answers: {incorrectQuestions.length}</p>
+          <p className='summary-statistics'>Skipped Questions: {skippedQuestionIndices.length}</p>
         </div>
       )}
 
       {showResults && (
+        <div className="results">
+          {incorrectQuestions.map((correctAnswer, index) => (
+            <div key={index} className="result-item">
+              <p className='result-text'>{`Question ${skippedQuestionIndices[index] + 1 || 'NA'}: Incorrect`}</p>
+              <p className='result-text'>{`Correct Answer: ${correctAnswer}`}</p>
+            </div>
+          ))}
+          {skippedQuestionIndices.map((index, resultIndex) => (
+            <div key={index} className="result-item">
+              <p className='result-text'>{`Question ${index + 1 || 'NA'}: Skipped`}</p>
+              <p className='result-text'>{`Correct Answer: ${quizData?.questions[index]?.ans || 'NA'}`}</p>
+            </div>
+          ))}
+        </div>
+      )}
+
+      {/* {showResults && (
         <Link to="/test/checkAnswers">
           <button className="submit-button1">
             Check Answers
           </button>
         </Link>
-      )}
+      )} */}
     </div>
   );
 };
 
 export default TestEnvironment;
+
