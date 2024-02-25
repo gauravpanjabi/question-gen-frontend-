@@ -146,10 +146,13 @@ const TestEnvironment: React.FC = () => {
         <div className="results">
           {incorrectQuestions.map((correctAnswer, index) => (
             <div key={index} className="result-item">
-              <p className='result-text'>{`Question ${skippedQuestionIndices[index] + 1 || 'NA'}: Incorrect`}</p>
+              <p className='result-text'>{`Question ${index + 2}: Incorrect`}</p>
               <p className='result-text'>{`Correct Answer: ${correctAnswer}`}</p>
             </div>
           ))}
+
+
+
           {skippedQuestionIndices.map((index, resultIndex) => (
             <div key={index} className="result-item">
               <p className='result-text'>{`Question ${index + 1 || 'NA'}: Skipped`}</p>
@@ -158,6 +161,7 @@ const TestEnvironment: React.FC = () => {
           ))}
         </div>
       )}
+
 
       {/* {showResults && (
         <Link to="/test/checkAnswers">
