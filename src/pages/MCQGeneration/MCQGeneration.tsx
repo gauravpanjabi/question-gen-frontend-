@@ -1,20 +1,23 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState } from 'react';
 import './MCQGeneration.css';
-import data from '../../dummy.json';
+import data from '../../components/TestEnvironment/questions.json';
 import MCQCard from '../../components/MCQCard/MCQCard';
-import { Link,useNavigate } from "react-router-dom";
-import axios from 'axios'; 
+import { Link, useNavigate } from "react-router-dom";
 
-interface MCQItem {
+interface Question {
   ID: number;
   Question: string;
-  options: string[];
+  ans: string;
+}
+
+interface QuizData {
+  questions: Question[];
 }
 
 const MCQGeneration: React.FC = () => {
   const [text, setText] = useState('');
   const [difficulty, setDifficulty] = useState('easy');
-  const [mcqData, setMCQData] = useState<MCQItem[] | null>(null);
+  const [quizData, setQuizData] = useState<QuizData | null>(null);
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
 
@@ -29,21 +32,20 @@ const MCQGeneration: React.FC = () => {
   };
 
   const handleSubmit = async () => {
-    // try {
-    //   const response = await axios.get('YOUR_API_ENDPOINT');
-    //   setMCQData(response.data);
-    //   setFormSubmitted(true);
-    // } catch (error) {
-    //   console.error('Error fetching data:', error);
-    // }
-
-    setMCQData(data);
+    // Parse the JSON data and structure it according to the QuizData interface
+    const formattedData: QuizData = {
+      questions: data.questions.map((question: any) => ({
+        ID: question.id,
+        Question: question.text,
+        ans: question.ans
+      }))
+    };
+    setQuizData(formattedData);
     setFormSubmitted(true);
   };
 
   const sendMCQDataToTest = () => {    
-    navigate('/test', { state:  mcqData  });
-    // console.log(mcqData);
+    navigate('/test', { state: quizData });
   };
 
   const countWords = (text: string) => {
@@ -56,17 +58,13 @@ const MCQGeneration: React.FC = () => {
   };
 
   const handleQuestionChange = (newQuestion: string, index: number) => {
-    const updatedData = [...mcqData!];
-    updatedData[index].Question = newQuestion;
-    setMCQData(updatedData);
+    // You need to update the questions array within quizData
+    if (quizData) {
+      const updatedQuestions = [...quizData.questions];
+      updatedQuestions[index].Question = newQuestion;
+      setQuizData({ ...quizData, questions: updatedQuestions });
+    }
   };
-
-  const handleOptionChange = (newOptions: string[], index: number) => {
-    const updatedData = [...mcqData!];
-    updatedData[index].options = newOptions;
-    setMCQData(updatedData);
-  };
-
 
   return (
     <div className='MCQGeneration-container'>
@@ -79,7 +77,7 @@ const MCQGeneration: React.FC = () => {
           <h3 className="suggested-length">
             Suggested text length: 50 - 3000 words.
           </h3>
-          <label className='text-input-word-count' htmlFor="text-input">Word Count: <span>{ countWords(text)}</span></label>
+          <label className='text-input-word-count' htmlFor="text-input">Word Count: <span>{countWords(text)}</span></label>
           <textarea
             id="text-input"
             className="text-input"
@@ -107,7 +105,7 @@ const MCQGeneration: React.FC = () => {
         <div className="right-section">
           {formSubmitted && (
             <div className='mcq-button-container'>
-               <Link to='/test' state={{ mcqData: mcqData }}><button className='take-test-mcq' onClick={sendMCQDataToTest}>Take Test</button></Link>
+               <button className='take-test-mcq' onClick={sendMCQDataToTest}>Take Test</button>
               <div>
               {isEditing ? (
                 <button className='save-mcq' onClick={handleEditClick}>
@@ -121,15 +119,13 @@ const MCQGeneration: React.FC = () => {
               </div>
             </div>
           )}
-          {mcqData &&
-            mcqData.map((item, index) => (
-              <MCQCard
-                key={item.ID}
-                mcqData={item}
-                isEditing={isEditing}
-                onQuestionChange={(newQuestion) => handleQuestionChange(newQuestion, index)}
-                onOptionChange={(newOptions) => handleOptionChange(newOptions, index)}
-              />
+          {quizData && quizData.questions.map((question, index) => (
+            <MCQCard
+              key={index} // Using index as key assuming questions are unique in the array
+              QuizData={question} // Pass Question object
+              isEditing={isEditing}
+              onQuestionChange={(newQuestion) => handleQuestionChange(newQuestion, index)}
+            />
           ))}
         </div>
       </div>

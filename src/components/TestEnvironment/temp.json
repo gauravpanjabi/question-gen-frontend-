@@ -1,4 +1,5 @@
-{
+[
+    {
     "id": 3,
     "text": "Along with Holland and Italy, what country did the French armies invade in the 1790s?",
     "options": [
@@ -75,3 +76,4 @@
         {"value": "d", "text": "Full Armies", "correct": false}
     ]
 }
+]

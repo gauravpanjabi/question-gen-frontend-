@@ -13,8 +13,6 @@ interface QuizData {
   questions: Question[];
 }
 
-interface SelectedOptionsMap extends Map<number, string> {}
-
 const TestEnvironment: React.FC = () => {
   const [quizData, setQuizData] = useState<QuizData | null>(null);
   const [currentQuestion, setCurrentQuestion] = useState<number>(0);
@@ -30,9 +28,6 @@ const TestEnvironment: React.FC = () => {
     setTextAreaValues(Array(fetchedQuizData.questions.length).fill(''));
   }, []);
 
-  const handleOptionChange = (questionIndex: number, selectedValue: string) => {
-    // handle radio button changes if needed
-  };
 
   const navigateToQuestion = (direction: 'prev' | 'next') => {
     if (!showResults) {

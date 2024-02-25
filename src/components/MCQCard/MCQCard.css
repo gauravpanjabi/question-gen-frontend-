@@ -1,4 +1,4 @@
-.mcq-card {
+.Quiz-card {
     border: 1px solid #ccc;
     border-radius: 10px; 
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
@@ -24,11 +24,6 @@
   .option-label {
     font-weight: bold;
     margin-right: 15px;
-  }
-
-  .mcq-option-flex{
-    display: flex;
-    flex-direction: row;
   }
 
   .text-option{
