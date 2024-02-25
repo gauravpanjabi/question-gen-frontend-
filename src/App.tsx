@@ -14,7 +14,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/mcq" element={<MCQGeneration />} />
         <Route path="/test" element={<TestEnvironment />} />
-        <Route path='/test/checkAnswers' element={<CheckAnwers/>}/>
+        <Route path='/test/checkAnswers' element={<CheckAnwers correctAnswers={[]}/>}/>
       </Routes>
     </BrowserRouter>
   );
