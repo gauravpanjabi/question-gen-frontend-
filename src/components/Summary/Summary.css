@@ -1,0 +1,42 @@
+.Summary-bg{
+    margin-top: -20px;
+    padding: 0;
+    background-image: url('../../assets/images/backgroundimg.jpg');
+    background-size: cover; 
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    min-height: 100vh;
+}
+
+.Summary-header{
+    text-align: center;
+}
+
+.Summary-table-data{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.cell-data{
+    text-align: center;
+    margin-right: 10px;
+}
+
+.show-solution{
+  background-image: linear-gradient(to right, #56ab2f 0%, #a8e063  51%, #56ab2f  100%);
+  transition: 0.5s;
+  background-size: 200% auto;
+  font-family: Roboto-Regular;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 5px 10px;
+  font-size: 14px;
+  white-space: nowrap;
+  font-weight: bolder;
+  transition: 0.5s;
+  background-size: 200% auto;
+  cursor: pointer;
+  width:100px;
+}

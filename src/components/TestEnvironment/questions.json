@@ -3,11 +3,13 @@
         {
             "id": 1,
             "text": "The first print of Sorrieu's series shows who marching in a train?",
+            "concept" : "French revolution",
             "ans": "Peoples"
         },
         {
             "id": 2,
             "text": "Nationalism emerged as a force which brought about sweeping changes in what?",
+            "concept" : "Dandi March",
             "ans": "Europe"
         }
     ]

@@ -7,6 +7,7 @@ import { Link, useNavigate } from "react-router-dom";
 interface Question {
   ID: number;
   Question: string;
+  concept: string;
   ans: string;
 }
 
@@ -37,6 +38,7 @@ const MCQGeneration: React.FC = () => {
       questions: data.questions.map((question: any) => ({
         ID: question.id,
         Question: question.text,
+        concept: question.concept,
         ans: question.ans
       }))
     };
