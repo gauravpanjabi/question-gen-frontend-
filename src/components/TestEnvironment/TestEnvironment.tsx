@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import CountdownTimer from '../CountDownTimer/CountDownTimer'; // Import CountdownTimer component
 import './TestEnvironment.css';
 import data from './questions.json';
-import CheckAnswers from './CheckAnswers'; // Import CheckAnswers component
+import CheckAnswers from './CheckAnswers';
 
 interface Question {
   text: string;
@@ -18,9 +19,11 @@ const TestEnvironment: React.FC = () => {
   const [currentQuestion, setCurrentQuestion] = useState<number>(0);
   const [textAreaValues, setTextAreaValues] = useState<string[]>([]);
   const [showResults, setShowResults] = useState<boolean>(false);
-  const [correctAnswers, setCorrectAnswers] = useState<string[]>([]); // Store correct answers
+  const [correctAnswers, setCorrectAnswers] = useState<string[]>([]);
   const [incorrectQuestions, setIncorrectQuestions] = useState<string[]>([]);
   const [skippedQuestionIndices, setSkippedQuestionIndices] = useState<number[]>([]);
+  const [timerEnded, setTimerEnded] = useState<boolean>(false); // Add timer state
+  const [testSubmitted, setTestSubmitted] = useState<boolean>(false); // Add testSubmitted state
 
   useEffect(() => {
     const fetchedQuizData: QuizData = data;
@@ -85,6 +88,13 @@ const TestEnvironment: React.FC = () => {
     setSkippedQuestionIndices(skippedIndices);
 
     setShowResults(true);
+    setTimerEnded(true); // Stop the timer when the test is submitted
+    setTestSubmitted(true); // Set testSubmitted to true
+  };
+
+  const handleTimerEnd = () => {
+    setTimerEnded(true);
+    calculateResults();
   };
 
   if (!quizData) {
@@ -96,6 +106,7 @@ const TestEnvironment: React.FC = () => {
   return (
     <div className="quiz-container">
       <h1 className="title11">Test</h1>
+      {!timerEnded && !testSubmitted && <CountdownTimer onTimerEnd={handleTimerEnd} />} {/* Render CountdownTimer */}
       <div className="question-card">
         <div className="question">{question.text}</div>
         <div>
@@ -151,8 +162,6 @@ const TestEnvironment: React.FC = () => {
             </div>
           ))}
 
-
-
           {skippedQuestionIndices.map((index, resultIndex) => (
             <div key={index} className="result-item">
               <p className='result-text'>{`Question ${index + 1 || 'NA'}: Skipped`}</p>
@@ -161,18 +170,8 @@ const TestEnvironment: React.FC = () => {
           ))}
         </div>
       )}
-
-
-      {/* {showResults && (
-        <Link to="/test/checkAnswers">
-          <button className="submit-button1">
-            Check Answers
-          </button>
-        </Link>
-      )} */}
     </div>
   );
 };
 
 export default TestEnvironment;
-
